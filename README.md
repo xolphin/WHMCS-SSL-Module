@@ -1,1 +1,1 @@
-# WHMCS-SSL-Module
+# Xolphin WHMCS SSL Module
