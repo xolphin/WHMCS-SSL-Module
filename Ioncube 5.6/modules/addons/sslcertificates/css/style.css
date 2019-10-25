@@ -1,0 +1,167 @@
+#sslcertificatesconfig table .fieldlabel {
+    width: 200px;
+}
+
+#sslcertificatesconfig table td {
+    padding: 2px 5px;
+    text-align: left;
+    vertical-align: top;
+}
+
+#sslcertificatesconfig table td li {
+    list-style: circle;
+}
+
+#sslcertificatesconfig table td a {
+    text-decoration: underline;
+}
+
+.table-bordered thead th {
+    text-align: center !important;
+}
+
+.package, .validation {
+    cursor: pointer;
+}
+
+.ordercustomfields {
+    height: 75px;
+}
+
+.account-hosting {
+    height: 140px;
+}
+
+.h3style {
+    text-align: left;
+    margin-bottom: 15px;
+    padding-top: 0;
+    float: none;
+    font-family: 'titilliumweb-bold-webfont', Helvetica;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 110%;
+}
+
+.col-lg-12 {
+    padding-left: 0px !important;
+}
+
+.brdr {
+    border-bottom: 1px solid #dde3e6;
+}
+
+.decodeCSR {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#getApproverEmails {
+    margin-bottom: 5px;
+}
+
+.checkPackage {
+    width: 25%;
+}
+
+.error-result, .error-message {
+    text-align: center;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    padding: 15px;
+    margin-bottom: 0px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.successCheck #validationType,
+.accountOutsideHosting #validationType,
+.successCheck #approverEmail,
+.accountOutsideHosting #approverEmail,
+.successCheck .input-group,
+.extra .input-group {
+    width: 75%;
+}
+
+.reissue .input-group {
+    width: 50%;
+}
+
+.contact-information .brdr,
+.cert-information .brdr {
+    border-bottom: 3px solid #777;
+}
+
+.contact-information .h3style,
+.cert-information .brdr {
+    margin-bottom: 0px;
+}
+
+.contact-information {
+    margin-bottom: 25px;
+}
+
+.settings-form {
+    display: none;
+    margin-top: 10px;
+}
+
+#reissueCert .cert-information .input-group{
+    width: 100%;
+}
+
+.popover:not(.language-popover) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1010;
+    display: none;
+    max-width: 650px;
+    min-width: 600px;
+    padding: 1px;
+    text-align: left;
+    white-space: normal;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+}
+
+.infoWildcard {
+    margin: 5px 0 0px 0;
+    color: #555;
+    font-size: 15px;
+    text-align: center;
+    font-family: "Open Sans", Verdana, Tahoma, serif;
+}
+
+.infoMultidomain {
+    display: none;
+    color: #555;
+    font-size: 15px;
+    text-align: center;
+    font-family: "Open Sans", Verdana, Tahoma, serif;
+    margin-top: 10px;
+    padding-top: 2px;
+}
+
+.infoMultidomain .bg-warning {
+    margin-bottom: 10px;
+    height: 85px;
+    padding-top: 10px;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

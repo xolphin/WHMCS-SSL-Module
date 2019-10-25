@@ -1,0 +1,123 @@
+=========================
+= Current version: 3.3  =
+=========================
+==== Version history ====
+=========================
+
+v3.3 - 2019-06-18
+ - Bug: Fixed enable/disable products option
+ - Bug: Fixed DirectAdmin file validation path
+ - Bug: Fixed reissue validation email not set error
+ - Bug: Fixed reissue with automated CSR
+ - Bug: Fixed reissue adding SANs
+
+v3.2 - 2018-12-19
+ - Feature: Added setting to turn on auto renew by default on all new orders
+ - Feature: Added info message on validation type
+ - Feature: Email templates sent when certificate has been issued.
+    -- Available Templates names are:
+        - "Xolphin - Certificate has been issued (CSR Provided By Client)"
+        - "Xolphin - Certificate has been issued and installed"
+        - "Xolphin - Certificate has been issued but failed to install"
+    -- Available template variables:
+        - "xolphin_domain" - Containing the Common Name of the certificate
+ - Feature: Products no longer set as removed when WHMCS product is removed, making it possible to reinstall
+ - Feature: Added extra logging on automated installation to catch future errors
+ - Bug: No longer strips first character of phonenumber
+ - Bug: Fix showCA URL
+ - Bug: Adding domains on reissue now possible again
+ - Bug: Private key now available after reissue on failed installation
+ - Bug: Send correct CSR upon reissue
+ - Bug: Add correct CNAME and FILE validation data
+ - Bug: Fixed missing javascript
+ - Bug: ArgumentCountError fixed on CSR Update
+
+V3.1 - 2018-06-14
+ - Bug: Fixed SQL error on product reissue
+
+v3.0 - 2018-05-14
+ - Feature: Possible to order multiple SSL products at once.
+ - Feature: CSR Generation moved from Client-side to Admin-side.
+ - Feature: Multiple themes supported.
+ - Improved system stability
+
+v2.4 - 2017-09-22
+ - Update: Added notification regarding product import and pricing updates
+ - Feature: Support DirectAdmin Extended Module for automation functions
+
+v2.3 - 2017-09-13
+ - Feature: Encryption Everywhere product support added
+ - Feature: Add brands after initial import
+
+v2.2 - 2017-08-31
+ - Update: Renamed module tables to prevent conflicts
+ - Update: Renamed variables to prevent conflicts
+ - Feature: Added webhook file that can be used by Xolphin to notify WHMCS that a certificate was issued. Please contact us to activate it for your account
+ - Feature: Added showing SAN names in the service specification (Admin side)
+ - Feature: Allow admin to update / set CSR for manual orders
+ - Feature: Allow customers to place an order without having to provide a CSR or use auto-generation
+ - Feature: Correction to DirectAdmin decoding for DA 1.514
+
+v2.1.2 - 2017-08-10
+ - Bug: Fixed tooltip on order page during manual order
+ - Bug: Blocking duplicate SSL orders
+ - Bug: No longer remove sslcertificates_ tables when module is deactivated, breaking all current orders
+
+v2.1.1 - 2017-07-26
+ - New: Updated control panel calls to create new Comodo CNAME and File records
+ - Bug: Fixed bug where cron would return an error when there are no records
+ - Bug: Corrected location for searching missing language files
+ - Bug: Dual loading CSS issue resolved
+ - Bug: Show extra domains as 0 instead of -1 when none are supplied
+ 
+v2.0 - 2016-11-23
+ - Update: Refactoring code
+ - Bug-fixing
+
+v1.8 - 2016-07-18
+ - Fix: Module connection to Plesk hosting panel
+ - Fix: Order form for MDC and Wildcard certificates according to the product type
+
+v1.7 - 2016-07-15
+ - Update: Connection to the hosting panels through user's profile
+ - Update: Send CSA email functionality is added
+ - Update: Language files are updated
+ - Fix: Order form for MDC and Wildcard certificates is updated
+ - Fix: Subdomains are allowed to enter in Orderform.
+ - Fix: Duplication of domains in the order is restricted
+ - Fix: Popup with "Loading..." title on Reissue page is removed
+
+v1.6 - 2016-07-12
+ - Update: API Link added to the code
+ - Update: Remove placeholders in Order form
+ - Update: Cron message changed
+ - Update: Module description is changed
+ - Update: Product names while installation are changed
+ - Fix: Pop-up with "Loading..." title in Order form is removed
+
+v1.5 - 2016-06-22
+ - Fix: Connection between addon module and language files
+
+v1.4 - 2016-05-27
+ - Update: Resend email functionality in Client area
+ - Update: Buttons for Renew and Autorenew in Admin part
+ - Update: Validation statuses update for OV and EV certificates
+ - Fix: Do not double products after deactivating
+
+v1.3 - 2016-05-04
+ - Fix: Button "Add SAN" in orderform for Multidomain certificates
+ - Fix: Layout of orderform (lines and messages were displaced)
+
+v1.2 - 2016-04-29
+ - Fix: Approver Email field in Order Form
+ - Update: Add version of the module
+
+v1.1 - 2016-04-27
+ - Added language files
+ - Cron URL changes
+ - Request ID added to Cron
+ - User agent "WHMCS" added to the request
+ - Updating the file name of intermediate and root certificates according to external API
+
+v1.0 - 2016-03-09
+- First release

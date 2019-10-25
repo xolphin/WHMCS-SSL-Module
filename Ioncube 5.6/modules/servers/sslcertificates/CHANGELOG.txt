@@ -1,0 +1,56 @@
+=========================
+= Current version: 2.1  =
+=========================
+==== Version history ====
+=========================
+
+v2.1 - 2016-12-31
+ - New: Added possibility order the Encryption Everywhere certificate
+
+v1.8 - 2016-07-18
+ - Fix: Module conncetion to Plesk hosting panel 
+ - Fix: Order form for MDC and Wildcard certificates according to the product type
+
+v1.7 - 2016-07-15
+ - Update: Connection to the hosting panels through user's profile 
+ - Update: Send CSA email functionality is added
+ - Update: Language files are updated
+ - Fix: Order form for MDC and Wildcard certificates is updated
+ - Fix: Subdomains are allowed to enter in Orderdorm.
+ - Fix: Duplication of domains in the order is restricted
+ - Fix: Popup with "Loading..." title on Reissue page is removed
+
+v1.6 - 2016-07-12
+ - Update: API Link added to the code
+ - Update: Remove placeholders in Order form
+ - Update: Cron message changed
+ - Update: Module description is changed
+ - Update: Product names while installation are changed
+ - Fix: Popup with "Loading..." title in Order form is removed
+
+v1.5 - 2016-06-22
+ - Fix: Connection between addon module and language files
+
+v1.4 - 2016-05-27
+ - Update: Resend email functionality in Client area
+ - Update: Buttons for Renew and Autorenew in Admin part
+ - Update: Validation statuses update for OV and EV certificates
+ - Fix: Do not double products after deactivating
+
+v1.3 - 2016-05-04
+ - Fix: Button "Add SAN" in orderform for Multidomain certificates
+ - Fix: Layout of orderform (lines and messages were displaced)
+
+v1.2 - 2016-04-29
+ - Fix: Approver Email field in Order Form
+ - Update: Add version of the module
+
+v1.1 - 2016-04-27
+ - Added language files
+ - Cron URL changes
+ - Request ID added to Cron 
+ - User agent "WHMCS" added to the request
+ - Updating the file name of intermidiate and root certificates according to external API
+
+v1.0 - 2016-03-09
+- First release
