@@ -1,8 +1,12 @@
 =========================
-= Current version: 3.3  =
+= Current version: 3.4  =
 =========================
 ==== Version history ====
 =========================
+
+v3.4 - 2019-12-12
+ - Bug: Fixed Admin side order saving bug, adding "dcv" tag
+ - Update: Automatic Installation now connects to the server hostname as set in WHMCS
 
 v3.3 - 2019-06-18
  - Bug: Fixed enable/disable products option

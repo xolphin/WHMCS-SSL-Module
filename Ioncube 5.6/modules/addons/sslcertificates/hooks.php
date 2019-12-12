@@ -236,32 +236,33 @@ function sslcertificatesAdminClientServicesPage($vars)
     $SSLCertificatesModel = new \SSLCertificates\Models\SSLCertificatesModel();
 
     if($SSLCertificatesModel->serviceIsSSLProduct($vars["id"])){
-        $orderDetails = $SSLCertificatesModel->getOrder($vars["id"]);
 
-        $orderDetails->order = json_decode(decrypt($orderDetails->order, $GLOBALS['cc_encryption_hash']));
-        $orderDetails->csr = decrypt($orderDetails->csr, $GLOBALS['cc_encryption_hash']);
-        $orderDetails->pvtKey = decrypt($orderDetails->pvtKey, $GLOBALS['cc_encryption_hash']);
+           $orderDetails = $SSLCertificatesModel->getOrder($vars["id"]);
 
-        $SANs = explode(",", $orderDetails->order->subjectAlternativeNames);
+            $orderDetails->order = json_decode(decrypt($orderDetails->order, $GLOBALS['cc_encryption_hash']));
+            $orderDetails->csr = decrypt($orderDetails->csr, $GLOBALS['cc_encryption_hash']);
+            $orderDetails->pvtKey = decrypt($orderDetails->pvtKey, $GLOBALS['cc_encryption_hash']);
 
-        $fields = array();
+            $SANs = explode(",", $orderDetails->order->subjectAlternativeNames);
+        print_r($orderDetails);
+            $fields = array();
 
-        foreach($SANs as $key => $SAN){
-            $fields['SAN.' . ($key  + 1) ] = $SAN;
-        }
+            foreach($SANs as $key => $SAN){
+                $fields['SAN.' . ($key  + 1) ] = $SAN;
+            }
 
-        $fields['CSR'] = "<textarea name='orderCSR' id='orderCSR' style='width:600px; height:600px'>" . $orderDetails->csr . "</textarea>";
+            $fields['CSR'] = "<textarea name='orderCSR' id='orderCSR' style='width:600px; height:600px'>" . $orderDetails->csr . "</textarea>";
 
-        $fields['DCV'] = "<select name='DCV' id='DCV'><option";
-                    if($orderDetails->order->dcv == "EMAIL") {
-                        $fields['DCV'] = $fields['DCV'] . " selected ";
-                    }
-        $fields['DCV'] = $fields['DCV'] . ">EMAIL</option><option";
-            if($orderDetails->order->dcv == "DNS") {
+            $fields['DCV'] = "<select name='DCV' id='DCV'><option";
+            if($orderDetails->order->dcvType == "EMAIL") {
+                $fields['DCV'] = $fields['DCV'] . " selected ";
+            }
+            $fields['DCV'] = $fields['DCV'] . ">EMAIL</option><option";
+            if($orderDetails->order->dcvType == "DNS") {
                 $fields['DCV'] = $fields['DCV'] . " selected ";
             }
         $fields['DCV'] = $fields['DCV'] . ">DNS</option><option";
-            if($orderDetails->order->dcv == "FILE") {
+            if($orderDetails->order->dcvType == "FILE") {
                 $fields['DCV'] = $fields['DCV'] . " selected ";
             }
         $fields['DCV'] = $fields['DCV'] . ">FILE</option>";
@@ -282,7 +283,9 @@ function sslcertificatesAdminClientServicesPageSave($vars)
     $orderDetails = $SSLCertificatesModel->getOrder($vars["id"]);
     $order = json_decode(decrypt($orderDetails->order, $GLOBALS['cc_encryption_hash']));
     $order->csr = $vars["orderCSR"];
-    $order->dcv = $vars["DCV"];
+    $order->dcvType = $vars["DCV"];
+    $order->approverEmail = $vars["approverEmail"];
+    unset($order->dcv);
     $order = encrypt(json_encode($order), $GLOBALS['cc_encryption_hash']);
     $csr = encrypt($vars["orderCSR"], $GLOBALS['cc_encryption_hash']);
 
