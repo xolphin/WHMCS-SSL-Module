@@ -244,7 +244,7 @@ function sslcertificatesAdminClientServicesPage($vars)
             $orderDetails->pvtKey = decrypt($orderDetails->pvtKey, $GLOBALS['cc_encryption_hash']);
 
             $SANs = explode(",", $orderDetails->order->subjectAlternativeNames);
-        print_r($orderDetails);
+    
             $fields = array();
 
             foreach($SANs as $key => $SAN){
