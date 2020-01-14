@@ -43,7 +43,7 @@
             <select name="validationType" id="validationType" class="form-control">
                 <option value="">-- {$lang['sslXolphinInformationSelValidType']} --</option>
                 <option value="EMAIL">{$lang['sslXolphinServerEmail']}</option>
-                <option value="DNS">{$lang['sslXolphinServerCName']}</option>
+                <option value="DNS">DNS</option>
                 <option value="FILE">{$lang['sslXolphinServerUplFile']}</option>
             </select>
         </div>

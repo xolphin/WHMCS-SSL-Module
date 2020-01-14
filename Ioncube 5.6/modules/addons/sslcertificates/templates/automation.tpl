@@ -47,7 +47,7 @@
             <select name="validationType" id="validationType" class="form-control">
                 <option value=""></option>
                 <option value="EMAIL">E-mail</option>
-                <option value="DNS">CNAME</option>
+                <option value="DNS">DNS</option>
                 <option value="FILE">Upload file</option>
             </select>
         </div>
