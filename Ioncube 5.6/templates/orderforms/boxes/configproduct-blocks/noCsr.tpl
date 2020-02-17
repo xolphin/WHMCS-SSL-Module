@@ -33,7 +33,7 @@
                                                                                                                     style="width: 650px;"
                                                                                                                     data-toggle="tooltip" title="{$lang['sslXolphinInformationValidationType']}"
             >
-                <img class="img-circle" src="" alt="info">
+                <i class="fas fa-info-circle" style="color:#0099CC;"></i>
             </a>
         </label>
         <select name="validationType" id="validationType" class="form-control">
@@ -60,7 +60,7 @@
            style="width: 650px;"
            data-toggle="tooltip" title="{$lang['sslXolphinInformationCSR']}"
         >
-            <img class="img-circle" src="" alt="info">
+            <i class="fas fa-info-circle" style="color:#0099CC;"></i>
         </a>
     </label>
     <textarea class="form-control" name="csr" cols="50" id="csr" rows="10"></textarea>

@@ -1,12 +1,16 @@
 =========================
-= Current version: 3.5  =
+= Current version: 3.6  =
 =========================
 ==== Version history ====
 =========================
 
+v3.5 - 2020-02-17
+ - Bug: Plesk SSL installations now get a unique name
+ - Bug: Fixed order form images
+ - Bug: Better error messages in Cron output
+
 v3.5 - 2020-01-14
  - Bug: Create TXT record for DigiCert products instead of CNAME
-
 
 v3.4 - 2019-12-12
  - Bug: Fixed Admin side order saving bug, adding "dcv" tag

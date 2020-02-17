@@ -21,7 +21,7 @@
            .....
            <br>xg==<br>
            -----END CERTIFICATE REQUEST -----'>
-            <img class="img-circle" src="" alt="info">
+            <i class="fas fa-info-circle" style="color:#0099CC;"></i>
 
         </a>
     </label>
@@ -83,7 +83,7 @@
                Place a CNAME DNS record with specific content.<br>
                <strong>File validation</strong><br>
                Place a file on your website with specific content.">
-                <img class="img-circle" src="" alt="info">
+                <i class="fas fa-info-circle" style="color:#0099CC;"></i>
             </a>
         </label>
         <select name="validationType" id="validationType" class="form-control">

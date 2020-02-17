@@ -9,7 +9,7 @@
            style="width: 650px;"
            data-original-title="&lt;b&gt;{$lang['sslXolphinInformationCSR']}&lt;/b&gt;"
            data-content='{$lang['sslXolphinInformationDataContentCSR']}'>
-            <img class="img-circle" src="" alt="info">
+            <i class="fas fa-info-circle" style="color:#0099CC;"></i>
         </a>
     </label>
     <textarea class="form-control" name="csr" cols="50" rows="10"></textarea>
@@ -59,7 +59,7 @@
                style="width: 650px;"
                data-original-title="&lt;b&gt;Validation Information&lt;/b&gt;"
                data-content="{$lang['sslXolphinInformationEmailValid']}">
-                <img class="img-circle" src="" alt="info">
+                <i class="fas fa-info-circle" style="color:#0099CC;"></i>
             </a>
         </label>
         <select name="validationType" id="validationType" class="form-control">
