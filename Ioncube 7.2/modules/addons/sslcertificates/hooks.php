@@ -71,14 +71,10 @@ function sslcertificatesClientAreaHeadOutput($vars)
 function sslcertificatesClientAreaPageCart($vars)
 {
     
-    localAPI('logactivity', ["description" => "ClientAreaPageCart Accessed"], 1);
     $SSLCertificatesModel = new \SSLCertificates\Models\SSLCertificatesModel();
-    localAPI('logactivity', ["description" => json_encode($vars)], 1);
 
     if(key_exists("productinfo", $vars)){
-        localAPI('logactivity', ["description" => "ClientAreaPageCart productinfo Accessed"], 1);
        if($SSLCertificatesModel->isSSLProduct($vars["productinfo"]["pid"])){
-           localAPI('logactivity', ["description" => "ClientAreaPageCart productinfo->pid Accessed"], 1);
            global $_LANG;
 
            $vars['lang'] = $_LANG;
