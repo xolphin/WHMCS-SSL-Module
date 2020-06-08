@@ -1,10 +1,13 @@
 =========================
-= Current version: 3.6  =
+= Current version: 3.7  =
 =========================
 ==== Version history ====
 =========================
 
-v3.5 - 2020-02-17
+v3.7 - 2020-06-08
+ - Feature: Added support for cPanelExtended and PleskExtended
+
+v3.6 - 2020-02-17
  - Bug: Plesk SSL installations now get a unique name
  - Bug: Fixed order form images
  - Bug: Better error messages in Cron output
