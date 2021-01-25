@@ -18,7 +18,8 @@ Module installation:
 1.Determine which PHP version you have installed:
  
 	a) For PHP 7.0 and lower, use the files located in the "Ioncube 5.6" folder.
-	b) For PHP 7.1 and higher, use the files located in the "Ioncube 7.1" folder.
+	b) For PHP 7.1 , use the files located in the "Ioncube 7.1" folder.
+	b) For PHP 7.2 and higher, use the files located in the "Ioncube 7.2" folder.
 	
 2.Backup the "lang", "modules", "templates" and "xolphin" folders, that currently reside in your WHMCS root folder. Do not remove them!
 3.Unzip and copy the "lang", "modules", "templates" and "xolphin" folders directly into the root of your WHMCS installation
