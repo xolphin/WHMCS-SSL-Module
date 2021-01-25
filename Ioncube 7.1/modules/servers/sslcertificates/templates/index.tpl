@@ -1,9 +1,5 @@
 <h2>{$lang['sslXolphinServerManageCert']}</h2>
-{if isset($smarty.session.xolphin.error)}
-    <div class="alert alert-danger">
-        <p><strong>{$lang['sslXolphinServerErrorOccured']}:</strong> {$smarty.session.xolphin.error}</p>
-    </div>
-{/if}
+
 <div id="cert-manage">
     {if $result.success}
         <div style="margin:0 0 10px 0;padding:10px 35px;background-color:#dff0d8;color:#555;font-size:16px;text-align:center;">
@@ -85,9 +81,9 @@
             </div>     
         {/if}
     {else}
-        {if !isset($smarty.session.xolphin.error)}        
+
             <div class="alert alert-warning">{$lang['sslXolphinServerCertNoValid']}</div>
-        {/if}
+
     {/if}
 </div>
 <hr>

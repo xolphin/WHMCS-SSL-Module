@@ -4,6 +4,8 @@
 ==== Version history ====
 =========================
 
+v3.8 - 2021-01-25
+ - WHMCS 8 support
 v3.7 - 2020-06-08
  - Feature: Added support for cPanelExtended and PleskExtended
 
