@@ -1,5 +1,6 @@
 <?php
 
+use \Illuminate\Database\Capsule\Manager as Capsule;
 use SSLCertificates\includes\Settings as Settings;
 
 require_once dirname(__FILE__) . '/includes/Settings.php';
@@ -105,6 +106,7 @@ function sslcertificatesClientAreaPageCart($vars)
 
            // EE only xid bug fix
            $vars['xid'] = $SSLCertificatesModel->getProductID($vars['productinfo']['pid']);
+           $vars['validation'] = Capsule::table('xolphinssl_products')->where('xid', $vars['xid'])->first()->validation;
 
 
            /* Check that Certificate selected at Cart exist */

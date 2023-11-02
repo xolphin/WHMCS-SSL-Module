@@ -27,6 +27,8 @@
         <input type="hidden" name="noHosting" value="{$noHosting}">
         <input type="hidden" name="img" value="{$img}">
         <input type="hidden" name="xid" value="{$xid}">
+        
+        <data id="validation" data="{$validation}">
 
         {if $errormessage}
             <div class="alert alert-danger alert-dismissible" role="alert">

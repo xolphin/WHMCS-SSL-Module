@@ -25,4 +25,5 @@
     lang['sslXolphinInformationEntWildcardDomNameNormalOrder'] = "{$lang['sslXolphinInformationEntWildcardDomNameNormalOrder']}";
     lang['sslXolphinCertificatesDaysExp'] = "{$lang['sslXolphinCertificatesDaysExp']}";
     lang['sslXolphinCertificatesSure'] = "{$lang['sslXolphinCertificatesSure']}";
+    lang['sslXolphinCertificatesSomeWrong'] = "{$lang['sslXolphinCertificatesSomeWrong']}";
 </script>

@@ -21,71 +21,92 @@ $(document).ready(function () {
         return xnodes;
     }
     var notifications = $('#man-notif').css('display', 'none');
+
+    var checkWildcardDomain = (errCallback) => {
+      //Check wildcard domain
+      if (certificateType === "WILDCARD"){
+        if (!$('#domain').val().trim().match(/^(\*\.)/)) {
+            $('#wildcardProductNoWildcardDomain').remove();
+            $('#domain').after('<div id="wildcardProductNoWildcardDomain" class="alert alert-danger">' + lang["sslXolphinInformationEntWildcardDomName"] + '</div>');
+            $('#domain').css('border-color', 'red');
+            errCallback && errCallback();
+            return false;
+        }else{
+            $('#wildcardProductNoWildcardDomain').remove();
+        }
+      }
+
+      //Check none wildcard domain
+      if (certificateType !== "WILDCARD"){
+        if (!$('#domain').val().trim().match(/^(?=.{1,254}$)((?=[a-z0-9-]{1,63}\.)(xn--+)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,63}$/i)) {
+            $('#normalProductWildcardDomain').remove();
+            $('#domain').after('<div id="normalProductWildcardDomain" class="alert alert-danger">' + lang["sslXolphinInformationEntWildcardDomNameNormalOrder"] + '</div>');
+            $('#domain').css('border-color', 'red');
+            errCallback && errCallback();
+            return false;
+        }else{
+            $('#normalProductWildcardDomain').remove();
+        }
+      }
+
+      $('#domain').css('border-color', '#ced4da');
+      return true;
+    }
+
     //Function to load approver email addresses once domain has been filled
     $('input[name=domain]').bind('focusout', function () {
-        if ($(this).val() != "") {
-
-
-
-            //Check wildcard domain
-            if (certificateType === "WILDCARD"){
-                if (!$('#domain').val().trim().match(/^(\*\.)/)) {
-
-                    $('#wildcardProductNoWildcardDomain').remove();
-                    $('#domain').after('<div id="wildcardProductNoWildcardDomain" class="alert alert-danger">' + lang["sslXolphinInformationEntWildcardDomName"] + '</div>');
-
-                }else{
-
-                    $('#wildcardProductNoWildcardDomain').remove();
-
-                }
-            }
-
-            //Check none wildcard domain
-            if (certificateType !== "WILDCARD"){
-                if (!$('#domain').val().trim().match(/^(?=.{1,254}$)((?=[a-z0-9-]{1,63}\.)(xn--+)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,63}$/i)) {
-
-                    $('#normalProductWildcardDomain').remove();
-                    $('#domain').after('<div id="normalProductWildcardDomain" class="alert alert-danger">' + lang["sslXolphinInformationEntWildcardDomNameNormalOrder"] + '</div>');
-
-                }else{
-
-                    $('#normalProductWildcardDomain').remove();
-
-                }
-            }
-
-
-        } else {
-            $(this).css('border-color', 'red');
-        }
+      checkWildcardDomain()
     });
 
 
     $('#validationType').bind('change', function () {
 
-        if($('#validationType').val() === "EMAIL"){
+      if($('#validationType').val() === "EMAIL"){
+          if (!checkWildcardDomain(() => $('#validationType').val(""))) return;
 
-            var approverEmails = $('.approver-emails').css('display', 'block');
+          var approverEmails = $('.approver-emails').css('display', 'block');
 
-            $.ajax({
-                method: "POST",
-                url: location.href,
-                data: {
-                    domain: $('#domain').val().trim(),
-                    certType: certificateType,
-                    getEmails: true
-                }
-            })
-                .done(function (result) {
-                    addEmails(result, $('.accountNoCSR #approverEmail'), notifications, approverEmails);
-                });
+          $.ajax({
+              method: "POST",
+              url: location.href,
+              data: {
+                  domain: $('#domain').val().trim(),
+                  certType: certificateType,
+                  getEmails: true
+              }
+          })
+          .done(function (result) {
+            $('#validationTypeError').remove();
+            $('#domain').css('border-color', '#ced4da');
+            addEmails(result, $('.accountNoCSR #approverEmail'), notifications, approverEmails);
+          })
+          .fail((reason)=>{
+            $('#validationTypeError').remove();
+            if (reason.responseText.indexOf('Exception: Invalid domain name') !== -1) {
+              if (certificateType === "WILDCARD"){
+                $('#wildcardProductNoWildcardDomain').remove();
+                $('#domain').after('<div id="wildcardProductNoWildcardDomain" class="alert alert-danger">' + lang["sslXolphinInformationEntWildcardDomName"] + '</div>');
+              }
+              if (certificateType !== "WILDCARD"){
+                $('#normalProductWildcardDomain').remove();
+                $('#domain').after('<div id="normalProductWildcardDomain" class="alert alert-danger">' + lang["sslXolphinInformationEntWildcardDomNameNormalOrder"] + '</div>');
+              }
+              $('#domain').css('border-color', 'red');
+              $('#validationType').val("");
+            } else {
+              $('#validationType').after('<div id="validationTypeError" class="alert alert-danger">' + lang["sslXolphinCertificatesSomeWrong"] + '</div>');
+              $('#validationType').css('border-color', 'red');
+              $('#validationType').val("");
+            }
+            $('.approver-emails').css('display', 'none');
+          });
+      }else{
+        $('#validationTypeError').remove();
+        $('#validationType').css('border-color', '#ced4da');
+        $('.approver-emails').css('display', 'none');
+      }
 
-        }else{
-            var approverEmails = $('.approver-emails').css('display', 'none');
-        }
-
-    });
+  });
 
 
 
@@ -361,34 +382,51 @@ $(document).ready(function () {
 
     $("#submit-form").submit(function (event) {
         event.preventDefault();
+        var contactFields;
 
+        if (['EV', 'OV'].indexOf($('#validation').attr('data')) !== -1) {
+          contactFields = {
+            company: $('#company').val().trim(),
+            address: $('#address').val().trim(),
+            city: $('#city').val().trim(),
+            province: $('#province').val().trim(),
+            country: $('#country').val().trim(),
+            domain: $('#domain').val().trim(),
+            zipcode: $('#zipcode').val().trim(),
+            certenrollEmail :  $('#certenrollEmail ').val(),
+            approverRepresentativeFirstName: $('#approverRepresentativeFirstName').val().trim(),
+            approverRepresentativeLastName: $('#approverRepresentativeLastName').val().trim(),
+            approverRepresentativePhone: $('#approverRepresentativePhone').val().trim(),
+            approverRepresentativeEmail: $('#approverRepresentativeEmail').val().trim(),
+            approverRepresentativePosition: $('#approverRepresentativePosition').val().trim(),
+            csr: $('textarea[name=csr]').val()
+          }
+        } else {
+          contactFields = {
+            company: $('#company').val().trim(),
+            address: $('#address').val().trim(),
+            city: $('#city').val().trim(),
+            state: $('#state').val().trim(),
+            country: $('#country').val().trim(),
+            domain: $('#domain').val().trim(),
+            zipcode: $('#zipcode').val().trim(),
+            csr: $('textarea[name=csr]').val()
+          }
+        }
 
-            var form = this,
-                validateOption = $('#validationType'),
-                contactFields = {
-                    company: $('#company').val().trim(),
-                    address: $('#address').val().trim(),
-                    city: $('#city').val().trim(),
-                    state: $('#state').val().trim(),
-                    country: $('#country').val().trim(),
-                    domain: $('#domain').val().trim(),
-                    zipcode: $('#zipcode').val().trim(),
-                    approverFirstName: $('#approverFirstName').val().trim(),
-                    approverLastName: $('#approverLastName').val().trim(),
-                    approverPhone: $('#approverPhone').val().trim(),
-                    csr: $('textarea[name=csr]').val()
-                },
-                data = {
-                    uid: uid,
-                    certificateType: certificateType,
-                    contactFields: contactFields,
-                    approverEmail:  $('#approverEmail').val(),
-                    dcvType: validateOption.val().trim(),
-                    csr: $('textarea[name=csr]').val(),
-                    extraDomains: $('#extra_domain').val()
+        var form = this,
+            validateOption = $('#validationType'),
+            data = {
+                uid: uid,
+                certificateType: certificateType,
+                contactFields: contactFields,
+                approverEmail:  $('#approverEmail').val(),
+                dcvType: validateOption.val().trim(),
+                csr: $('textarea[name=csr]').val(),
+                extraDomains: $('#extra_domain').val()
 
-                },
-              notifications = $('.notifications').css('display', 'none');
+            },
+          notifications = $('.notifications').css('display', 'none');
 
 
 
@@ -480,11 +518,16 @@ function setContactInfo(container, contactInfo) {
         container.find('#country').val(contactInfo.client.country);
         container.find('#address').val(contactInfo.client.address1);
         container.find('#city').val(contactInfo.client.city);
-        container.find('#state').val(contactInfo.client.fullstate);
         container.find('#zipcode').val(contactInfo.client.postcode);
-        container.find('#approverFirstName').val(contactInfo.client.firstname);
-        container.find('#approverLastName').val(contactInfo.client.lastname);
-        container.find('#approverPhone').val(contactInfo.client.phonenumber);
+        if (['EV', 'OV'].indexOf($('#validation').attr('data')) !== -1) {
+          container.find('#approverRepresentativeFirstName').val(contactInfo.client.firstname);
+          container.find('#approverRepresentativeLastName').val(contactInfo.client.lastname);
+          container.find('#approverRepresentativePhone').val(contactInfo.client.phonenumber);
+          container.find('#approverRepresentativeEmail').val(contactInfo.client.email);
+          container.find('#province').val(contactInfo.client.fullstate);
+        } else {          
+          container.find('#state').val(contactInfo.client.fullstate);
+        }
     }
 }
 
