@@ -38,10 +38,6 @@
 </div>
 {if $validation eq "OV" || $validation eq "EV"}
 <div style="margin-top: 5px;">
-    <label for="certenrollEmail">{$lang['sslXolphinServerAppCertEnrollEmail']}</label>
-    <input type="email" name="certenrollEmail" id="certenrollEmail" class="form-control">
-</div>
-<div style="margin-top: 5px;">
     <label for="approverRepresentativeFirstName">{$lang['sslXolphinServerAppRepresentativeFirstName']}</label>
     <input type="text" name="approverRepresentativeFirstName" id="approverRepresentativeFirstName" class="form-control" required>
 </div>
